@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lag_winner_id: 1
+  lag_loser_id: 1
+  lag_winner_points_earned: 1
+  lag_loser_points_earned: 1
+  lag_winner_games_won: 1
+  lag_loser_games_won: 1
+  session_id: 1
+  match_date: 2025-05-27
+
+two:
+  lag_winner_id: 1
+  lag_loser_id: 1
+  lag_winner_points_earned: 1
+  lag_loser_points_earned: 1
+  lag_winner_games_won: 1
+  lag_loser_games_won: 1
+  session_id: 1
+  match_date: 2025-05-27

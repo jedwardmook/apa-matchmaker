@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_one: one
+  player_two: one
+  date_played: 2025-05-20
+  player_one_points: 1
+  player_two_points: 1
+  player_one_games_won: 1
+  player_two_games_won: 1
+
+two:
+  player_one: two
+  player_two: two
+  date_played: 2025-05-20
+  player_one_points: 1
+  player_two_points: 1
+  player_one_games_won: 1
+  player_two_games_won: 1
