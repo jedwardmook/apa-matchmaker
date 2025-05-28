@@ -34,6 +34,12 @@ Rails.application.routes.draw do
       get 'teams'
     end
   end
+  # Custom route for getting matches of a specific player
+  resources :players do
+    member do
+      get 'matches'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

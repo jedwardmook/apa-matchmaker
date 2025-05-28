@@ -18,4 +18,8 @@ class Player < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def all_matches
+    Match.where("player_1_id = ? OR player_2_id = ?", id, id)
+  end
+
 end

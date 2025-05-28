@@ -13,8 +13,6 @@ class MatchesController < ApplicationController
     render json: @match
   end
 
-  def show
-
   # POST /matches
   def create
     @match = Match.new(create_match_params)

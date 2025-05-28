@@ -21,6 +21,14 @@ class PlayersController < ApplicationController
     render json: @teams
   end
 
+  # GET /players/[:id]/matches
+  def matches
+    @player = Player.find(params[:id])
+    @matches = @player.all_matches.uniq
+  
+    render json: @matches
+  end
+
   # POST /players
   def create
     @player = Player.new(player_params)

@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_28_005925) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_28_183644) do
   create_table "matches", force: :cascade do |t|
     t.integer "player_1_id"
     t.integer "player_2_id"
-    t.integer "lag_winner_id"
-    t.integer "lag_loser_id"
-    t.integer "lag_winner_points_earned"
-    t.integer "lag_loser_points_earned"
-    t.integer "lag_winner_games_won"
-    t.integer "lag_loser_games_won"
+    t.integer "home_player_id"
+    t.integer "away_player_id"
+    t.integer "home_player_points_earned"
+    t.integer "away_player_points_earned"
+    t.integer "home_player_games_won"
+    t.integer "away_player_games_won"
     t.integer "session_id"
     t.date "match_date"
     t.datetime "created_at", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_28_005925) do
     t.integer "player_1_skill_level", default: 0, null: false
     t.integer "player_2_skill_level", default: 0, null: false
     t.integer "match_winner_id", default: 0, null: false
+    t.integer "lag_winner_id", default: 0, null: false
   end
 
   create_table "player_skill_levels", force: :cascade do |t|
@@ -70,8 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_28_005925) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "matches", "players", column: "lag_loser_id"
-  add_foreign_key "matches", "players", column: "lag_winner_id"
+  add_foreign_key "matches", "players", column: "away_player_id"
+  add_foreign_key "matches", "players", column: "home_player_id"
   add_foreign_key "matches", "players", column: "player_1_id"
   add_foreign_key "matches", "players", column: "player_2_id"
   add_foreign_key "matches", "sessions"
