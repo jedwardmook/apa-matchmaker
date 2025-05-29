@@ -13,4 +13,5 @@ class Match < ApplicationRecord
       Player.find(match_winner_id).full_name
     end
   end
+  
 end
