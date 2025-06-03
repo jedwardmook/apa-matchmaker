@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @players = @team.players
 
-    render json: @players
+    render json: @players.as_json(methods: [:latest_skill_level])
   end
 
   # GET /teams/1

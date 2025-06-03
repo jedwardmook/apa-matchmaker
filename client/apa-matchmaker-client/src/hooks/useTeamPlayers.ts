@@ -5,15 +5,22 @@ interface Player {
   first_name: string;
   last_name: string;
   player_number: number;
+  latest_skill_level: number;
 }
 export function useTeamPlayers({id}: { id: number | undefined | null }) {
   const [players, setPlayers] = useState<Player[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  console.log('useTeamPlayers', id);
-  console.log('useTeamPlayers', players);
   
   useEffect(() => {
+    if (!id) {
+      setPlayers([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    setPlayers(undefined);
     fetch(`http://127.0.0.1:3000/teams/${id}/players`)
     .then((response) => {
       if (!response.ok) {

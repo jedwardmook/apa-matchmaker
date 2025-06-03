@@ -11,6 +11,9 @@ class Player < ApplicationRecord
   belongs_to :team
 
   def latest_skill_level
+    if player_skill_levels.empty?
+      return 3 # Default skill level if none exists
+    end
     player_skill_levels.last.skill_level
   end
 
