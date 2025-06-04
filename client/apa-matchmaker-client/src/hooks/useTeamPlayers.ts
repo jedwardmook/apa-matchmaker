@@ -6,6 +6,7 @@ interface Player {
   last_name: string;
   player_number: number;
   latest_skill_level: number;
+  full_name: string;
 }
 export function useTeamPlayers({id}: { id: number | undefined | null }) {
   const [players, setPlayers] = useState<Player[]>();

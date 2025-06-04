@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :player_skill_levels, only: [:index, :show, :create, :update]
   resources :matches
   resources :team_affiliations
 

@@ -10,7 +10,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1
   def show
-    render json: @player
+    render json: @player.as_json(methods: [:latest_skill_level, :full_name])
   end
 
   # GET /players/[:id]/teams

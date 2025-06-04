@@ -2,20 +2,13 @@ import { useState } from 'react';
 import { useTeams } from './hooks/useTeams';
 import { useTeamPlayers } from './hooks/useTeamPlayers';
 import './App.css'
+import SkillLevelForm from './components/skillLevelForm';
 
 function App() {
   const { teams, loading, error } = useTeams();
   const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
   const { players, loading: playersLoading, error: playersError } = useTeamPlayers({ id: selectedTeamId });
   const [selectedForm, setSelectedForm] = useState<string | null>(null);
-  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
-
-  const handleTeamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTeam(event.target.value);
-    setSelectedTeamId(null); // Reset selected team ID when changing team
-    setSelectedTeamId(teams.find(team => team.team_name === event.target.value)?.id || null);
-  };
-  console.log(players)
 
   switch (selectedForm) {
     case 'match':
@@ -41,22 +34,58 @@ function App() {
         );
     case 'skillLevel':
       return (
-        <div>
-          <button onClick={() => setSelectedForm(null)}>Return</button>
-          <form>
-            <label>
-              Team:
-              <select onChange={handleTeamChange} value={selectedTeam || ''}>
-                <option value="">Select a team</option>
-                {teams.length > 0 && teams.map((team) => (
-                  (
-                    <option key={team.id} value={team.team_name}>{team.team_name}</option>
-                  )
-                ))}
-              </select>
-            </label>
-          </form>
-        </div>
+        // <div>
+        //   <button onClick={() => setSelectedForm(null)}>Return</button>
+        //   <form>
+        //     <label>
+        //       Team:
+        //       <select onChange={handleTeamChange} value={selectedTeam || ''}>
+        //         <option value="">Select a team</option>
+        //         {teams.length > 0 && teams.map((team) => (
+        //           <option key={team.id} value={team.team_name}>
+        //             {team.team_name}
+        //           </option>
+        //         ))}
+        //       </select>
+        //     </label>
+        //     {players && players.length > 0 &&
+        //       <label>
+        //         Player:
+        //         <select value={selectedPlayer || ''} onChange={handlePlayerChange}>
+        //           <option value="">Select a player</option>
+        //           {players && players.map((player) => (
+        //             <option key={player.id} value={player.full_name}>
+        //               {player.full_name}
+        //             </option>
+        //           ))}
+        //         </select>
+        //       </label>
+        //     }
+        //     {selectedPlayer && (
+        //       <>
+        //       <label>
+        //         Current Skill Level: {player?.latest_skill_level || ''}
+        //       </label>
+        //       <label>
+        //         New Skill Level:
+        //         <select>
+        //           <option value=""> </option>
+        //           {possibleSkillLevels
+        //             .filter((level) => level !== player?.latest_skill_level)
+        //             .map((level) => (
+        //             <option key={level} value={level}>
+        //               {level}
+        //             </option>
+        //           ))}
+        //         </select>
+        //       </label>
+        //       </>
+        //     )}
+        //   </form>
+        // </div>
+        <SkillLevelForm
+          setSelectedForm={setSelectedForm}
+        />
         );
     case null:
     // Default case, do nothing
@@ -89,7 +118,7 @@ function App() {
                   <ul>
                     {players.map((player) => (
                       <li key={player.id}>
-                        {player.first_name} {player.last_name} (#{player.player_number}) Skill Level: {player.latest_skill_level}
+                        {player.full_name} (#{player.player_number}) Skill Level: {player.latest_skill_level}
                       </li>
                     ))}
                   </ul>
